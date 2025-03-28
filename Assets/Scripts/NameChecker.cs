@@ -21,6 +21,19 @@ public class NameChecker : MonoBehaviour
     };
 
 
+    private void Update()
+    {
+        // エンターキー（Return）を押したかチェック
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            CheckInputName(); // ボタンと同じ関数を実行！
+        }
+    }
+
+
+
+
+
 
 
 
