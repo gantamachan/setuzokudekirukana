@@ -33,10 +33,6 @@ public class NameChecker : MonoBehaviour
 
 
 
-
-
-
-
     // 戻り値のない関数　自由に関数名を定義　Unity側の操作でボタンを押したら呼び出されるようにする。
     public void CheckInputName()
     {
