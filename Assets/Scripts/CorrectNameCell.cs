@@ -13,8 +13,11 @@ public class CorrectNameCell : MonoBehaviour
 
     private GodFieldData currentData;
 
+    //「このカードの名前は何か？」を外部（NameCheckerなど）から見られるようにするための“窓口”
+    public string CellName => currentData.Name;
+
     // 関数　引数はdata
-    public void setData(GodFieldData data)
+    public void SetData(GodFieldData data)
     {
         //引数のデータを渡す
         currentData = data;

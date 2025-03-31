@@ -13,12 +13,16 @@ public class NameChecker : MonoBehaviour
 
     //HashSet(重複しないリストを作成）　文字列型だよ　変数（自由）　＝　新しくからのHashsetを作れという命令
     private HashSet<string> answeredNames = new HashSet<string>();
+    //Listを作成
+    private List<CorrectNameCell> allCells = new List<CorrectNameCell>();
 
-    //List(順番に表示できるリストを作成）　文字列型だよ　変数（自由）　＝　新しくリストを作れ　ピカチュウなど全ての名前が網羅されている
+
+
+    //このリストはチェック用。あとで自動化します
     private List<string> correctNames = new List<string>
-    {
-        "ピカチュウ", "フシギダネ", "イーブイ"
-    };
+{
+    "両替", "売る", "買う", "銅の棍棒", "銀の棍棒", "金の棍棒"
+};
 
 
     private void Update()
@@ -56,15 +60,28 @@ public class NameChecker : MonoBehaviour
             
         }
 
+        //Contains 存在するかどうか確かめる
         //もし　inputの中身が事前に用意したリストに存在したら　
         if(correctNames.Contains(input))
         {
+            resultText.text = "正解";
+            //FindObjectOfType	シーン内のスクリプトを探す便利関数
+            var spawner = FindObjectOfType<CorrectNameGridSpawner>();
+
             // Hashsetにその名前を追加
             answeredNames.Add(input);
-            // unity上のTextに名前を追加で表示し、改行する
-            answeredText.text += input + "\n";
 
-            resultText.text = "正解";
+            foreach (CorrectNameCell cell in spawner.GetAllCells())
+            {
+                if (cell.CellName == input)
+                {
+                    cell.Reveal();
+                    break;
+                }
+            }
+
+
+
             EndCheck();
 
             
