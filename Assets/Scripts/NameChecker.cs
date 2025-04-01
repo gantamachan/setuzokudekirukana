@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro; //TextMeshを使うときはとりあえず書くやつ
+using System.Linq;
 
 
 public class NameChecker : MonoBehaviour
@@ -16,13 +17,19 @@ public class NameChecker : MonoBehaviour
     //Listを作成
     private List<CorrectNameCell> allCells = new List<CorrectNameCell>();
 
+    private List<string> correctNames;
 
 
-    //このリストはチェック用。あとで自動化します
-    private List<string> correctNames = new List<string>
-{
-    "両替", "売る", "買う", "銅の棍棒", "銀の棍棒", "金の棍棒"
-};
+    void Start()
+    {
+       //リストを読み込む
+        List<GodFieldData> dataList = GodFieldDataLoader.Load();
+        //名前だけを取り出す
+        correctNames = dataList.Select(d => d.Name).ToList();
+
+
+    }
+
 
 
     private void Update()

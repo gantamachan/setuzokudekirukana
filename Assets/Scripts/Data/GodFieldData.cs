@@ -41,7 +41,7 @@ public class GodFieldData
         //画像ない時のエラー確認用
         if (Sprite == null)
         {
-            Debug.LogWarning($"画像が見つかりません: {ImageName}");
+            Debug.LogWarning($"画像が見つかりません:{Name}: {ImageName}");
         }
     }
    
