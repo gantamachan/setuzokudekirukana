@@ -111,6 +111,13 @@ public class NameChecker : MonoBehaviour
         else
         {
             resultText.text = "不正解";
+
+            // 「この入力欄を選択状態にしてね！
+            inputField.Select();
+            //.ActivateInputField() 「この入力欄をアクティブにして、文字入力を受け付ける状態にしてね！
+            inputField.ActivateInputField();
+            // ：「入力されている文字の長さ」と同じ位置にカーソルを置いてね
+            inputField.caretPosition = inputField.text.Length;
         }
 
 
@@ -125,6 +132,11 @@ public class NameChecker : MonoBehaviour
     private void EndCheck()
     {
         inputField.text = "";
+
+
+        // 入力欄に再フォーカス
+        inputField.Select();
+        inputField.ActivateInputField();
     }
 
 
