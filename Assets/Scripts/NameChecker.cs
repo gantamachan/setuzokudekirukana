@@ -12,12 +12,18 @@ public class NameChecker : MonoBehaviour
     [SerializeField] private TMP_Text answeredText;
     [SerializeField] private TMP_Text resultText;
 
+    [SerializeField] private TMP_Text progressText;
+
     //HashSet(重複しないリストを作成）　文字列型だよ　変数（自由）　＝　新しくからのHashsetを作れという命令
     private HashSet<string> answeredNames = new HashSet<string>();
     //Listを作成
     private List<CorrectNameCell> allCells = new List<CorrectNameCell>();
 
     private List<string> correctNames;
+
+
+    private int correctCount = 0;
+    private int totalCount = 0;
 
 
     void Start()
@@ -27,7 +33,10 @@ public class NameChecker : MonoBehaviour
         //名前だけを取り出す
         correctNames = dataList.Select(d => d.Name).ToList();
 
+        //correctNamesのカウント数＝全てのカードの枚数
+        totalCount = correctNames.Count;
 
+        progressText.text = $"{correctCount} / {totalCount}";
     }
 
 
@@ -39,6 +48,7 @@ public class NameChecker : MonoBehaviour
         {
             CheckInputName(); // ボタンと同じ関数を実行！
         }
+
     }
 
 
@@ -78,6 +88,11 @@ public class NameChecker : MonoBehaviour
             // Hashsetにその名前を追加
             answeredNames.Add(input);
 
+            //corectCountに1追加
+            correctCount++;
+
+            progressText.text = $"{correctCount} / {totalCount}";
+
             foreach (CorrectNameCell cell in spawner.GetAllCells())
             {
                 if (cell.CellName == input)
@@ -98,8 +113,11 @@ public class NameChecker : MonoBehaviour
             resultText.text = "不正解";
         }
 
-        
 
+        if (correctCount == totalCount)
+        {
+            resultText.text = "ゲームクリア！";
+        }
 
     }
 
@@ -110,5 +128,6 @@ public class NameChecker : MonoBehaviour
     }
 
 
+    
 
 }
