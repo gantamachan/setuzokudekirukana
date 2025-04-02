@@ -61,7 +61,7 @@ public class NameCheckerV2 : MonoBehaviour
         //nameValidatorから入力された内容が正しいか確認
         if (nameValidator.IsCorrect(input))
         {
-            resultText.text = "正解";
+            resultText.text = $"正解　：　{input}";
             //Hashリストに追加
             answerTracker.AddAnswer(input);
             //cardを裏返す処理を依頼
