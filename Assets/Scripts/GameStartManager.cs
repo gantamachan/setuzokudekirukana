@@ -9,6 +9,7 @@ public class GameStartManager : MonoBehaviour
     //タイマーコントローラーってscriptと接続
     [SerializeField] private TimerController timerController;
     [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] private GameObject giveUpButton;
 
     private bool isGameStarted = false;
 
@@ -18,6 +19,8 @@ public class GameStartManager : MonoBehaviour
         nameInputField.interactable = false;
         buttonText.text = "開始";
         mainButton.onClick.AddListener(OnMainButtonClicked);
+        giveUpButton.SetActive(false);
+
     }
 
     private void OnMainButtonClicked()
@@ -27,6 +30,7 @@ public class GameStartManager : MonoBehaviour
             // ゲーム開始！
             isGameStarted = true;
            timerController.StartTimer();
+            giveUpButton.SetActive(true);
 
             // 入力受付をONに
             nameInputField.interactable = true;

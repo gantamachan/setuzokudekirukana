@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 //正解したときにカードをめくる
 public class CorrectNameRevealer
@@ -8,6 +9,7 @@ public class CorrectNameRevealer
     public CorrectNameRevealer(CorrectNameGridSpawner spawner)
     {
         this.spawner = spawner;
+        gridSpawner = spawner;
     }
 
     public void RevealCell(string name)
@@ -20,5 +22,16 @@ public class CorrectNameRevealer
                 break;
             }
         }
+    }
+
+    //他のスクリプトとつなげる　　スクリプト名　好きな名前の変数
+
+    private CorrectNameGridSpawner gridSpawner;
+
+   
+
+    public List<CorrectNameCell> GetAllCells()
+    {
+        return gridSpawner.GetAllCells();
     }
 }

@@ -11,6 +11,8 @@ public class CorrectNameCell : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image frontImage;
 
+    private bool isRevealed = false;
+
     private GodFieldData currentData;
 
     //「このカードの名前は何か？」を外部（NameCheckerなど）から見られるようにするための“窓口”
@@ -42,4 +44,18 @@ public class CorrectNameCell : MonoBehaviour
         frontImage.gameObject.SetActive(true);
     }
 
+    public void RevealAsMissed()
+    {
+        //裏隠す
+        backObject.gameObject.SetActive(false);
+
+        isRevealed = true;
+        frontBackground.SetActive(true);
+        frontImage.sprite = currentData.Sprite;
+        nameText.text = currentData.Name;
+        nameText.gameObject.SetActive(true);
+        nameText.color = Color.red; // ← 名前を赤く！
+        frontImage.gameObject.SetActive(true);
+       
+    }
 }

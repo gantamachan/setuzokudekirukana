@@ -11,7 +11,9 @@ public class NameCheckerV2 : MonoBehaviour
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private TMP_Text progressText;
     [SerializeField] private TimerController timerController;
-    
+
+    [SerializeField] private GameObject answerButton;
+
 
     private NameValidator nameValidator;
     private AnswerTracker answerTracker;
@@ -92,5 +94,41 @@ public class NameCheckerV2 : MonoBehaviour
         inputField.text = "";
         inputField.Select();
         inputField.ActivateInputField();
+    }
+
+    public void GiveUp()
+    {
+        timerController.StopTimer(); // タイマー停止
+
+        //残数取得
+        int remaining = totalCount - answerTracker.Count;
+        resultText.text = $"ギブアップ：残り{remaining}個";
+
+        answerButton.SetActive(false);
+
+
+        // 全カードを取得
+        var allCells = nameRevealer.GetAllCells(); // CorrectNameGridSpawnerから取る
+
+        foreach (var cell in nameRevealer.GetAllCells())
+        {
+           
+
+            if (answerTracker.IsAnswered(cell.CellName))
+            {
+                // 正解したカードはふつうに開く
+                cell.Reveal();
+            }
+            else
+            {
+                // 未回答のカードは赤く表示
+                cell.RevealAsMissed(); 
+            }
+        }
+
+        // ⑥ 入力欄をロックする（もう答えられない）
+        inputField.interactable = false;
+
+        inputField.interactable = false; // 入力不可に
     }
 }
