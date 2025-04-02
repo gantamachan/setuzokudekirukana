@@ -16,7 +16,11 @@ MemoryCaptures/
 *.mdb
 *.opendb
 *.VC.db
+<<<<<<< HEAD
 .vscode/
 !docs/
 !docs/Build/
 !docs/Build/**
+=======
+.vscode/
+>>>>>>> parent of 54597c4 (buildファイルが除外されていたのを修正)
