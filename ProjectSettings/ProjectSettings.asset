@@ -577,7 +577,11 @@ PlayerSettings:
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
+<<<<<<< HEAD
   webGLTemplate: APPLICATION:Default
+=======
+  webGLTemplate: PROJECT:FinalTemplate
+>>>>>>> e68001b436a9abe941e55c683603a393685bfeed
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 2
