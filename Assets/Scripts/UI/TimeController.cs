@@ -13,7 +13,7 @@ public class TimerController : MonoBehaviour
 
     // タイマーが動いているかを判定（trueで進行中、falseで停止）
     //boolはtrueかfalseしか入らないデータ型　今回のオンオフ判定の用途にはぴったり
-    private bool isRunning = true;
+    private bool isRunning = false;
 
     void Update()
     {
@@ -35,6 +35,14 @@ public class TimerController : MonoBehaviour
         // 表示を更新
         timerText.text = $"{hours:00}:{minutes:00}:{seconds:00}";
     }
+
+    // タイマーを動かす関数（外部から呼べる）
+    public void StartTimer()
+    {
+        isRunning = true;
+    }
+
+
 
     // タイマーを止める用の関数（外部から呼べる）
     public void StopTimer()

@@ -10,6 +10,8 @@ public class NameCheckerV2 : MonoBehaviour
     [SerializeField] private TMP_Text answeredText;
     [SerializeField] private TMP_Text resultText;
     [SerializeField] private TMP_Text progressText;
+    [SerializeField] private TimerController timerController;
+    
 
     private NameValidator nameValidator;
     private AnswerTracker answerTracker;
@@ -53,7 +55,7 @@ public class NameCheckerV2 : MonoBehaviour
         //answerTrackerからすでに正解しているかを受け取る
         if (answerTracker.IsAnswered(input))
         {
-            resultText.text = "既に回答済み";
+            resultText.text = $"既に回答済み　：　{input}";
             EndCheck();
             return;
         }
@@ -71,6 +73,7 @@ public class NameCheckerV2 : MonoBehaviour
             if (answerTracker.Count == totalCount)
             {
                 resultText.text = "ゲームクリア！";
+                timerController.StopTimer();
             }
 
             EndCheck();
