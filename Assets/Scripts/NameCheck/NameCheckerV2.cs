@@ -77,6 +77,8 @@ public class NameCheckerV2 : MonoBehaviour
             {
                 resultText.text = "ゲームクリア！";
                 timerController.StopTimer();
+
+                nameRevealer.ClearHighlight();
             }
 
             EndCheck();
@@ -107,6 +109,7 @@ public class NameCheckerV2 : MonoBehaviour
 
         answerButton.SetActive(false);
 
+        nameRevealer.ClearHighlight();
 
         // 全カードを取得
         var allCells = nameRevealer.GetAllCells(); // CorrectNameGridSpawnerから取る

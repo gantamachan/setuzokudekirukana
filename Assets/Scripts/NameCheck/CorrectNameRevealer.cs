@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class CorrectNameRevealer
 {
     private CorrectNameGridSpawner spawner;
+   
 
     //今ハイライトされているセルを定義
     private CorrectNameCell currentHighlightedCell = null;
@@ -45,6 +46,17 @@ public class CorrectNameRevealer
             }
 
            
+        }
+    }
+
+
+
+    public void ClearHighlight()
+    {
+        if (currentHighlightedCell != null)
+        {
+            currentHighlightedCell.SetHighlight(false);
+            currentHighlightedCell = null;
         }
     }
 
