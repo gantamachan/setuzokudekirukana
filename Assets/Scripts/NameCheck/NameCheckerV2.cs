@@ -18,6 +18,7 @@ public class NameCheckerV2 : MonoBehaviour
     private NameValidator nameValidator;
     private AnswerTracker answerTracker;
     private CorrectNameRevealer nameRevealer;
+    private ScrollController scrollController;
 
     private int totalCount;
 
@@ -32,6 +33,8 @@ public class NameCheckerV2 : MonoBehaviour
         nameRevealer = new CorrectNameRevealer(FindObjectOfType<CorrectNameGridSpawner>());
 
         progressText.text = $"0 / {totalCount}";
+
+        scrollController = FindObjectOfType<ScrollController>();
     }
 
     private void Update()
@@ -72,6 +75,13 @@ public class NameCheckerV2 : MonoBehaviour
             //card‚ð— •Ô‚·ˆ—‚ðˆË—Š
             nameRevealer.RevealCell(input);
             progressText.text = $"{answerTracker.Count} / {totalCount}";
+
+            //ƒXƒNƒ[ƒ‹
+            var cell = nameRevealer.GetAllCells().FirstOrDefault(c => c.CellName == input);
+            if (cell != null)
+            {
+                scrollController.ScrollToCell(cell);
+            }
 
             if (answerTracker.Count == totalCount)
             {
