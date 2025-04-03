@@ -11,6 +11,10 @@ public class CorrectNameCell : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image frontImage;
 
+    [SerializeField] private Image outlineImage; //
+
+    
+
     private bool isRevealed = false;
 
     private GodFieldData currentData;
@@ -18,7 +22,7 @@ public class CorrectNameCell : MonoBehaviour
     //「このカードの名前は何か？」を外部（NameCheckerなど）から見られるようにするための“窓口”
     public string CellName => currentData.Name;
 
-    // 関数　引数はdata
+    // 関数　引数はdata 最初のカードの状態を設定できるよ
     public void SetData(GodFieldData data)
     {
         //引数のデータを渡す
@@ -29,6 +33,11 @@ public class CorrectNameCell : MonoBehaviour
         frontBackground.SetActive(false);
         nameText.gameObject.SetActive(false);
         frontImage.gameObject.SetActive(false);
+
+        if(outlineImage != null)
+    {
+            outlineImage.gameObject.SetActive(false); // 初期は赤枠OFF
+        }
     }
 
     public void Reveal()
@@ -58,4 +67,19 @@ public class CorrectNameCell : MonoBehaviour
         frontImage.gameObject.SetActive(true);
        
     }
+
+    public void SetHighlight(bool enabled)
+    {
+
+        Debug.Log($"SetHighlight: {CellName}, {enabled}, ID: {GetInstanceID()}");
+
+
+        if (outlineImage != null)
+        {
+            outlineImage.gameObject.SetActive(enabled);
+            Debug.Log($"{CellName} の outlineImage が {(enabled ? "ON" : "OFF")} になりました");
+        }
+        
+    }
+
 }
