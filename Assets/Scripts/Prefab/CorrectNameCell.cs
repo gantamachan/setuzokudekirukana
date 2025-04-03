@@ -11,13 +11,11 @@ public class CorrectNameCell : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image frontImage;
 
-<<<<<<< HEAD
-    [SerializeField] private Image outlineImage;
-=======
-    [SerializeField] private Image outlineImage; //
 
-    
->>>>>>> 0a02b39c0e922688bace0ceff55592e8629d2a7c
+    [SerializeField] private Image outlineImage;
+
+
+
 
     private bool isRevealed = false;
 
@@ -74,24 +72,11 @@ public class CorrectNameCell : MonoBehaviour
 
     public void SetHighlight(bool enabled)
     {
-<<<<<<< HEAD
+
         if (outlineImage != null)
         {
             outlineImage.gameObject.SetActive(enabled);
         }
     }
-=======
 
-        Debug.Log($"SetHighlight: {CellName}, {enabled}, ID: {GetInstanceID()}");
-
-
-        if (outlineImage != null)
-        {
-            outlineImage.gameObject.SetActive(enabled);
-            Debug.Log($"{CellName} ‚Ì outlineImage ‚ª {(enabled ? "ON" : "OFF")} ‚É‚È‚è‚Ü‚µ‚½");
-        }
-        
-    }
-
->>>>>>> 0a02b39c0e922688bace0ceff55592e8629d2a7c
 }
