@@ -11,7 +11,13 @@ public class CorrectNameCell : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image frontImage;
 
+<<<<<<< HEAD
     [SerializeField] private Image outlineImage;
+=======
+    [SerializeField] private Image outlineImage; //
+
+    
+>>>>>>> 0a02b39c0e922688bace0ceff55592e8629d2a7c
 
     private bool isRevealed = false;
 
@@ -20,7 +26,7 @@ public class CorrectNameCell : MonoBehaviour
     //「このカードの名前は何か？」を外部（NameCheckerなど）から見られるようにするための“窓口”
     public string CellName => currentData.Name;
 
-    // 関数　引数はdata
+    // 関数　引数はdata 最初のカードの状態を設定できるよ
     public void SetData(GodFieldData data)
     {
         //引数のデータを渡す
@@ -31,6 +37,11 @@ public class CorrectNameCell : MonoBehaviour
         frontBackground.SetActive(false);
         nameText.gameObject.SetActive(false);
         frontImage.gameObject.SetActive(false);
+
+        if(outlineImage != null)
+    {
+            outlineImage.gameObject.SetActive(false); // 初期は赤枠OFF
+        }
     }
 
     public void Reveal()
@@ -63,9 +74,24 @@ public class CorrectNameCell : MonoBehaviour
 
     public void SetHighlight(bool enabled)
     {
+<<<<<<< HEAD
         if (outlineImage != null)
         {
             outlineImage.gameObject.SetActive(enabled);
         }
     }
+=======
+
+        Debug.Log($"SetHighlight: {CellName}, {enabled}, ID: {GetInstanceID()}");
+
+
+        if (outlineImage != null)
+        {
+            outlineImage.gameObject.SetActive(enabled);
+            Debug.Log($"{CellName} の outlineImage が {(enabled ? "ON" : "OFF")} になりました");
+        }
+        
+    }
+
+>>>>>>> 0a02b39c0e922688bace0ceff55592e8629d2a7c
 }

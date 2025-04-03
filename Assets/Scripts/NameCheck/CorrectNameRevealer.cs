@@ -7,21 +7,45 @@ public class CorrectNameRevealer
     private CorrectNameGridSpawner spawner;
     private CorrectNameCell currentHighlightedCell = null;
 
+    //今ハイライトされているセルを定義
+    private CorrectNameCell currentHighlightedCell = null;
+
     public CorrectNameRevealer(CorrectNameGridSpawner spawner)
     {
         this.spawner = spawner;
         gridSpawner = spawner;
     }
 
+    //正解したらめくる処理？
     public void RevealCell(string name)
     {
+        //spawner.GetAllCells() で取得したすべての CorrectNameCell に対して、1つずつ順番に処理を行う
         foreach (CorrectNameCell cell in spawner.GetAllCells())
         {
+            //CellName(カードの名前）とname（入力された名前）が一致したら
             if (cell.CellName == name)
             {
+
+                // 前回の赤枠をOFF　（の中はnullなら呼ばないようにするよという処理）
+                if (currentHighlightedCell != null)
+                {
+                    currentHighlightedCell.SetHighlight(false);
+                }
+
+
+
                 cell.Reveal();
-                break;
+
+                cell.SetHighlight(true);
+
+
+                // ③ 現在のセルをハイライトに記録
+                currentHighlightedCell = cell;
+                //ループおわり
+                return;
             }
+
+           
         }
     }
 
