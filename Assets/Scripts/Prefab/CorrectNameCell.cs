@@ -11,6 +11,8 @@ public class CorrectNameCell : MonoBehaviour
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private Image frontImage;
 
+    [SerializeField] private Image outlineImage;
+
     private bool isRevealed = false;
 
     private GodFieldData currentData;
@@ -57,5 +59,13 @@ public class CorrectNameCell : MonoBehaviour
         nameText.color = Color.red; // Å© ñºëOÇê‘Ç≠ÅI
         frontImage.gameObject.SetActive(true);
        
+    }
+
+    public void SetHighlight(bool enabled)
+    {
+        if (outlineImage != null)
+        {
+            outlineImage.gameObject.SetActive(enabled);
+        }
     }
 }
