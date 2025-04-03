@@ -68,6 +68,7 @@ public class NameCheckerV2 : MonoBehaviour
             resultText.text = $"正解　：　{input}";
             //Hashリストに追加
             answerTracker.AddAnswer(input);
+
             //cardを裏返す処理を依頼
             nameRevealer.RevealCell(input);
             progressText.text = $"{answerTracker.Count} / {totalCount}";
