@@ -32,6 +32,8 @@ public class GameStartManager : MonoBehaviour
            timerController.StartTimer();
             giveUpButton.SetActive(true);
 
+            AudioManager.Instance.PlaySE("start");
+
             // 入力受付をONに
             nameInputField.interactable = true;
             nameInputField.text = "";
@@ -44,6 +46,7 @@ public class GameStartManager : MonoBehaviour
             mainButton.image.color = new Color(0.5f, 1f, 0.5f); // 薄い緑
 
             // NameCheckerなどに「開始済み」フラグを通知する場合はここで
+
         }
         else
         {

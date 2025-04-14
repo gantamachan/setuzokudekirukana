@@ -18,6 +18,7 @@ public class NameCheckerV2 : MonoBehaviour
     private NameValidator nameValidator;
     private AnswerTracker answerTracker;
     private CorrectNameRevealer nameRevealer;
+    private ScrollController scrollController;
 
     private int totalCount;
 
@@ -32,6 +33,8 @@ public class NameCheckerV2 : MonoBehaviour
         nameRevealer = new CorrectNameRevealer(FindObjectOfType<CorrectNameGridSpawner>());
 
         progressText.text = $"0 / {totalCount}";
+
+        scrollController = FindObjectOfType<ScrollController>();
     }
 
     private void Update()
@@ -69,9 +72,18 @@ public class NameCheckerV2 : MonoBehaviour
             //Hashリストに追加
             answerTracker.AddAnswer(input);
 
+            AudioManager.Instance.PlaySE("cardopen");
+
             //cardを裏返す処理を依頼
             nameRevealer.RevealCell(input);
             progressText.text = $"{answerTracker.Count} / {totalCount}";
+
+            //スクロール
+            var cell = nameRevealer.GetAllCells().FirstOrDefault(c => c.CellName == input);
+            if (cell != null)
+            {
+                scrollController.ScrollToCell(cell);
+            }
 
             if (answerTracker.Count == totalCount)
             {
@@ -106,6 +118,8 @@ public class NameCheckerV2 : MonoBehaviour
         //残数取得
         int remaining = totalCount - answerTracker.Count;
         resultText.text = $"ギブアップ：残り{remaining}個";
+
+        AudioManager.Instance.PlaySE("end");
 
         answerButton.SetActive(false);
 

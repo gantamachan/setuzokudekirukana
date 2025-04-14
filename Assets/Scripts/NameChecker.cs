@@ -82,6 +82,8 @@ public class NameChecker : MonoBehaviour
         if(correctNames.Contains(input))
         {
             resultText.text = "正解";
+
+            AudioManager.Instance.PlaySE("cardopen");
             //FindObjectOfType	シーン内のスクリプトを探す便利関数
             var spawner = FindObjectOfType<CorrectNameGridSpawner>();
 
@@ -112,6 +114,8 @@ public class NameChecker : MonoBehaviour
         {
             resultText.text = "不正解";
 
+            AudioManager.Instance.PlaySE("damage");
+
             // 「この入力欄を選択状態にしてね！
             inputField.Select();
             //.ActivateInputField() 「この入力欄をアクティブにして、文字入力を受け付ける状態にしてね！
@@ -124,6 +128,7 @@ public class NameChecker : MonoBehaviour
         if (correctCount == totalCount)
         {
             resultText.text = "ゲームクリア！";
+            AudioManager.Instance.PlaySE("end");
         }
 
     }
