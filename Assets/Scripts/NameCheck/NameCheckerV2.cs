@@ -72,6 +72,8 @@ public class NameCheckerV2 : MonoBehaviour
             //Hashリストに追加
             answerTracker.AddAnswer(input);
 
+            AudioManager.Instance.PlaySE("cardopen");
+
             //cardを裏返す処理を依頼
             nameRevealer.RevealCell(input);
             progressText.text = $"{answerTracker.Count} / {totalCount}";
@@ -116,6 +118,8 @@ public class NameCheckerV2 : MonoBehaviour
         //残数取得
         int remaining = totalCount - answerTracker.Count;
         resultText.text = $"ギブアップ：残り{remaining}個";
+
+        AudioManager.Instance.PlaySE("end");
 
         answerButton.SetActive(false);
 
